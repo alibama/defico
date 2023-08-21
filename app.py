@@ -9,16 +9,16 @@ if uploaded_file is not None:
     data = json.loads(uploaded_file.getvalue())
   
 collateral = []
-spend = [] 
+spend = []
 
 if type(data) == dict:
-  data = [data]
+    data = [data]
   
 for row in data:
-  if 'collateral_add' in row['type']: 
-    collateral.append(row)
-  elif 'spend' in row['type']:
-    spend.append(row)
+    if 'collateral_add' in row['type']: 
+        collateral.append(row)
+    elif 'spend' in row['type']:
+        spend.append(row)
 
 collateral_df = pd.DataFrame(collateral) 
 spend_df = pd.DataFrame(spend)
