@@ -6,10 +6,10 @@ st.title('Parse Bank Transaction Data')
 
 uploaded_file = st.file_uploader('Upload JSON file', type=['json'])
 
-if uploaded_file is not None:
-  data = json.loads(uploaded_file.getvalue())
-  if type(data) == dict:
-    data = [data]
+data = json.loads(uploaded_file.getvalue())
+
+
+data = [data]
 
 
 collateral = []
