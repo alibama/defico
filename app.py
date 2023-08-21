@@ -9,7 +9,7 @@ uploaded_file = st.file_uploader('Upload JSON file', type=['json'])
 if uploaded_file is not None:
 
   data = json.loads(uploaded_file.getvalue())
-  
+
   if type(data) == dict:
     data = [data]
 
@@ -18,12 +18,14 @@ if uploaded_file is not None:
 
   for row in data:
     if 'collateral_add' in row['type']:
-      collateral.append(row)
-    elif 'spend' in row['type']:  
+      collateral.append(row)  
+    elif 'spend' in row['type']:
       spend.append(row)
 
-collateral_df = pd.DataFrame(collateral) 
+# Create DataFrames after parsing JSON
+collateral_df = pd.DataFrame(collateral)
 spend_df = pd.DataFrame(spend)
+
 
 st.write('Collateral Transactions')
 st.write(collateral_df.head())
