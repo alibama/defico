@@ -7,19 +7,19 @@ st.title('Parse Bank Transaction Data')
 uploaded_file = st.file_uploader('Upload JSON file', type=['json'])
 
 if uploaded_file is not None:
-
   data = json.loads(uploaded_file.getvalue())
 
-  if type(data) == dict:
-    data = [data]
+if type(data) == dict:
+  data = [data]
 
-  collateral = []
-  spend = []
 
-  for row in data:
-    if 'collateral_add' in row['type']:
+collateral = []
+spend = []
+
+for row in data:
+  if 'collateral_add' in row['type']:
       collateral.append(row)  
-    elif 'spend' in row['type']:
+  elif 'spend' in row['type']:
       spend.append(row)
 
 # Create DataFrames after parsing JSON
