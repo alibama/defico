@@ -11,7 +11,7 @@ if uploaded_file is not None:
     collateral = []
     spend = []
     for row in data:
-        if row['type'] == 'collateral_add':
+        if row['type'] == 'collateral\_add':
             collateral.append(row)
         elif row['type'] == 'spend':
             spend.append(row)
