@@ -6,7 +6,7 @@ st.title('Parse Bank Transaction Data')
 
 import json
 
-uploaded_file = st.file_uploader(...) 
+uploaded_file = st.file_uploader('Upload JSON file', type=['json'])
 
 if uploaded_file:
 
