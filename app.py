@@ -2,28 +2,25 @@ import streamlit as st
 import pandas as pd
 import json
 
-st.title('JSON Transaction Explorer')
+st.title('Parse Bank Transaction Data')
 
-uploaded_file = st.file_uploader('Choose a JSON file', type='json')
-
+uploaded_file = st.file_uploader('Upload JSON file', type=['json'])
 if uploaded_file is not None:
+    data = json.loads(uploaded_file.getvalue())
 
-  data = json.load(uploaded_file)
+    collateral = []
+    spend = []
+    for row in data:
+        if row['type'] == 'collateral_add':
+            collateral.append(row) 
+        elif row['type'] == 'spend':
+            spend.append(row)
 
-  # Schema detection
-  transactions = data['transactions']
-  schemas = {}
+    collateral_df = pd.DataFrame(collateral) 
+    spend_df = pd.DataFrame(spend)
 
-  for transaction in transactions:
+    st.write('Collateral Transactions')
+    st.write(collateral_df.head())
 
-    t_type = transaction['type']
-
-    if t_type not in schemas:
-      schemas[t_type] = {}
-    
-    schemas[t_type] = transaction.keys()
-
-  # Print schemas
-  st.header("Detected Schemas")
-  for t_type, schema in schemas.items():
-    st.write(f"{t_type} schema: {sorted(schema)}")
+    st.write('Spend Transactions') 
+    st.write(spend_df.head())
