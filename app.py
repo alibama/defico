@@ -26,5 +26,5 @@ spend_df = pd.DataFrame(spend)
 st.write('Collateral Transactions')
 st.write(collateral_df.head())
 
-st.write('Spend Transactions
+st.write('Spend Transactions')
 st.write(spend_df.head())
